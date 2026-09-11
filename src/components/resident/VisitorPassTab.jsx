@@ -28,50 +28,50 @@ export default function VisitorPassTab({ resident, building, showToast }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-in fade-in duration-200">
-      <div className="rounded-2xl bg-slate-900 border border-slate-800 p-6 space-y-4">
+      <div className="rounded-2xl bg-zinc-950/80 border border-white/[0.08] shadow-rim p-6 space-y-4 backdrop-blur-md">
         <div>
-          <h3 className="font-bold text-white text-base">Jana Pas Masuk Pelawat Pantas (QR)</h3>
-          <p className="text-xs text-slate-400">
+          <h3 className="font-semibold text-white text-base">Jana Pas Masuk Pelawat Pantas (QR)</h3>
+          <p className="text-xs text-zinc-400 mt-1">
             Imbas kod QR di pondok pengawal untuk kemasukan lancar tanpa perlu tinggalkan kad pengenalan.
           </p>
         </div>
 
         <form onSubmit={handleGenerate} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Nama Penuh Pelawat</label>
+            <label className="block text-xs font-medium text-zinc-300 mb-1">Nama Penuh Pelawat</label>
             <input
               type="text"
               value={visitorName}
               onChange={(e) => setVisitorName(e.target.value)}
               placeholder="Cth: Kamarul Ariffin"
-              className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 bg-zinc-900 border border-white/[0.08] rounded-xl text-xs text-zinc-200 focus:outline-none focus:border-amber-500/50"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">No. Pendaftaran Kenderaan (Plat Kereta)</label>
+            <label className="block text-xs font-medium text-zinc-300 mb-1">No. Pendaftaran Kenderaan (Plat Kereta)</label>
             <input
               type="text"
               value={visitorPlate}
               onChange={(e) => setVisitorPlate(e.target.value)}
               placeholder="Cth: VDK 8892"
-              className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-amber-500 font-mono uppercase"
+              className="w-full px-3 py-2 bg-zinc-900 border border-white/[0.08] rounded-xl text-xs text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono uppercase"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1">Tarikh Lawatan</label>
+            <label className="block text-xs font-medium text-zinc-300 mb-1">Tarikh Lawatan</label>
             <input
               type="date"
               value={visitorDate}
               onChange={(e) => setVisitorDate(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 bg-zinc-900 border border-white/[0.08] rounded-xl text-xs text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2"
+            className="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xs shadow-rim transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <QrCode className="w-4 h-4" />
             <span>Jana Pas Masuk QR</span>
@@ -81,31 +81,32 @@ export default function VisitorPassTab({ resident, building, showToast }) {
 
       <div>
         {generatedPass ? (
-          <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 border-2 border-amber-500/40 p-6 space-y-5 text-center relative overflow-hidden shadow-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider">
+          <div className="rounded-2xl bg-zinc-950 border border-amber-500/30 shadow-card-elevated p-6 space-y-5 text-center relative overflow-hidden">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider">
               <span>Pas Pelawat Sah • 1 Hari</span>
             </div>
 
             <div>
-              <h4 className="text-xl font-bold text-white">{building.name}</h4>
-              <p className="text-xs text-slate-400 mt-0.5">Destinasi: Unit {resident.unitNo} ({resident.tower})</p>
+              <h4 className="text-xl font-bold text-white tracking-tight">{building.name}</h4>
+              <p className="text-xs text-zinc-400 mt-0.5 font-mono">Destinasi: Unit {resident.unitNo} ({resident.tower})</p>
             </div>
 
-            <div className="p-4 bg-white rounded-2xl w-48 h-48 mx-auto shadow-inner flex flex-col items-center justify-center border-4 border-slate-800">
-              <div className="w-full h-full border-2 border-dashed border-slate-400 p-2 flex flex-col items-center justify-center">
-                <QrCode className="w-32 h-32 text-slate-950" />
-                <span className="font-mono text-[10px] font-bold text-slate-900 tracking-wider mt-1">{generatedPass.code}</span>
+            {/* Boarding pass QR ticket element */}
+            <div className="p-4 bg-white rounded-2xl w-48 h-48 mx-auto shadow-inner flex flex-col items-center justify-center border-4 border-zinc-800">
+              <div className="w-full h-full border-2 border-dashed border-zinc-400 p-2 flex flex-col items-center justify-center">
+                <QrCode className="w-32 h-32 text-zinc-950" />
+                <span className="font-mono text-[10px] font-bold text-zinc-900 tracking-wider mt-1">{generatedPass.code}</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+            <div className="grid grid-cols-2 gap-3 text-xs bg-zinc-900/80 p-3 rounded-xl border border-white/[0.08] shadow-rim">
               <div className="text-left">
-                <span className="text-slate-400 block text-[11px]">Nama Pelawat:</span>
-                <span className="font-bold text-slate-200">{generatedPass.name}</span>
+                <span className="text-zinc-500 text-[11px] block">Nama Pelawat:</span>
+                <span className="font-semibold text-zinc-200">{generatedPass.name}</span>
               </div>
               <div className="text-right">
-                <span className="text-slate-400 block text-[11px]">No. Kenderaan:</span>
-                <span className="font-mono font-bold text-amber-400">{generatedPass.plate}</span>
+                <span className="text-zinc-500 text-[11px] block">No. Kenderaan:</span>
+                <span className="font-mono tabular-nums font-bold text-amber-400">{generatedPass.plate}</span>
               </div>
             </div>
 
@@ -113,15 +114,15 @@ export default function VisitorPassTab({ resident, building, showToast }) {
               href={`https://wa.me/?text=${encodeURIComponent(`Salam ${generatedPass.name}, ini pas masuk pelawat bagi ${building.name}, Unit ${resident.unitNo}. Sila tunjukkan kod ini di palang guardhouse: ${generatedPass.code}`)}`}
               target="_blank"
               rel="noreferrer"
-              className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-300 font-semibold text-xs transition-colors flex items-center justify-center gap-2 shadow-rim"
             >
               <Share2 className="w-4 h-4" />
               <span>Kongsi Pas ke WhatsApp Pelawat</span>
             </a>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-900/40 border border-dashed border-slate-800 p-12 text-center text-slate-400 space-y-3">
-            <QrCode className="w-12 h-12 mx-auto text-slate-600 stroke-[1.5]" />
+          <div className="rounded-2xl bg-zinc-950/40 border border-dashed border-zinc-800 p-12 text-center text-zinc-500 space-y-3">
+            <QrCode className="w-12 h-12 mx-auto text-zinc-600 stroke-[1.5]" />
             <p className="text-xs">Isi maklumat di sebelah untuk menjana Pas Masuk QR kenderaan pelawat.</p>
           </div>
         )}

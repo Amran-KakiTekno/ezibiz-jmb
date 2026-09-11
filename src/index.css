@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950 min-h-screen;
+    @apply bg-black text-zinc-100 antialiased selection:bg-amber-500/20 selection:text-amber-200 min-h-screen;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -25,14 +25,23 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #27272a;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3f3f46;
+}
+
+/* Recent.design active dot indicator */
+.sidebar-active-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
 }
 
 /* Subtle pulse glow for active items */
