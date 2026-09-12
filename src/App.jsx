@@ -12,7 +12,6 @@ import {
   TrendingUp, 
   Vote, 
   Smartphone, 
-  ArrowLeft, 
   Settings, 
   CheckCircle2, 
   AlertTriangle,
@@ -23,7 +22,6 @@ import ResidentPortal from './components/ResidentPortal';
 import ManagementDesk from './components/ManagementDesk';
 import ReceiptModal from './components/ReceiptModal';
 import Form28Modal from './components/Form28Modal';
-import SuiteWaffleMenu from './components/SuiteWaffleMenu';
 import SettingsModal from './components/SettingsModal';
 import { useSettings } from './utils/useSettings';
 import { 
@@ -243,17 +241,9 @@ export default function App() {
       <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 z-30 bg-white/95 dark:bg-black/90 backdrop-blur-xl border-r border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-zinc-300 transition-colors">
         <div className="flex flex-col h-full justify-between p-4">
           <div className="space-y-5">
-            {/* Branding & Hub Link */}
+            {/* Branding */}
             <div>
-              <a 
-                href="https://ezibiz-hub.pages.dev" 
-                className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white transition-colors mb-3"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>{t('backToHub')}</span>
-              </a>
-
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-2">
                 <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] text-amber-500 dark:text-amber-400 flex items-center justify-center font-bold shrink-0">
                   <Building2 className="w-4 h-4" />
                 </div>
@@ -340,18 +330,16 @@ export default function App() {
               <span>{viewportMode === 'mobile' ? t('responsiveView') : t('mobileSimulator')}</span>
             </button>
 
-            <div className="flex items-center justify-between px-1 pt-1">
+            <div className="px-1 pt-1">
               <button
                 type="button"
                 onClick={() => setShowSettingsModal(true)}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-white/[0.06]"
+                className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-white/[0.06] min-h-[44px]"
                 title={t('settings')}
               >
                 <Settings className="w-4 h-4 text-slate-400 dark:text-zinc-400" />
                 <span>{t('settings')}</span>
               </button>
-
-              <SuiteWaffleMenu currentApp="jmb" />
             </div>
           </div>
         </div>
@@ -360,13 +348,6 @@ export default function App() {
       {/* MOBILE TOP BAR (Visible < 768px) */}
       <header className="md:hidden sticky top-0 z-40 bg-white/95 dark:bg-black/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/[0.08] px-4 h-14 flex items-center justify-between transition-colors">
         <div className="flex items-center gap-2.5 min-w-0">
-          <a 
-            href="https://ezibiz-hub.pages.dev" 
-            className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white"
-            title={t('backToHub')}
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </a>
           <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] text-amber-500 dark:text-amber-400 flex items-center justify-center font-bold shrink-0">
             <Building2 className="w-4 h-4" />
           </div>
@@ -378,14 +359,22 @@ export default function App() {
         <div className="flex items-center gap-1.5">
           <button 
             onClick={() => handlePersonaChange(persona === 'RESIDENT' ? 'MANAGEMENT' : 'RESIDENT')}
-            className="px-2.5 py-1 rounded-lg bg-amber-500 text-black text-xs font-semibold flex items-center gap-1 shadow-xs"
+            className="px-2.5 py-1 rounded-lg bg-amber-500 text-black text-xs font-semibold flex items-center gap-1 shadow-xs min-h-[36px]"
           >
             {persona === 'RESIDENT' ? <ShieldCheck className="w-3.5 h-3.5" /> : <Home className="w-3.5 h-3.5" />}
             <span className="truncate max-w-[85px]">
               {persona === 'RESIDENT' ? t('managementPersona') : t('residentPersona')}
             </span>
           </button>
-          <SuiteWaffleMenu currentApp="jmb" />
+          <button
+            type="button"
+            onClick={() => setShowSettingsModal(true)}
+            className="p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 min-w-[36px] min-h-[36px] flex items-center justify-center transition-colors cursor-pointer"
+            aria-label={t('settings')}
+            title={t('settings')}
+          >
+            <Settings className="w-4 h-4" />
+          </button>
         </div>
       </header>
 

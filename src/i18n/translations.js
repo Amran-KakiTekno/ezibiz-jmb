@@ -5,7 +5,6 @@ export const translations = {
     jmbTitle: 'JMB Strata',
     appName: 'EziBiz JMB & Strata Ops',
     tagline: 'Strata Community & Property Operations',
-    backToHub: 'Back to Hub',
     settings: 'Settings',
     act757: 'Act 757',
 
@@ -97,7 +96,6 @@ export const translations = {
     jmbTitle: 'JMB Strata',
     appName: 'EziBiz JMB & Operasi Strata',
     tagline: 'Komuniti Strata & Operasi Pengurusan',
-    backToHub: 'Kembali ke Hub',
     settings: 'Tetapan',
     act757: 'Akta 757',
 

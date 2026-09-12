@@ -1,9 +1,8 @@
-﻿# 🏛️ EziBiz JMB (Komuniti)
+# 🏛️ EziBiz JMB (Komuniti)
 > **Modern Residential Strata Management, Financial Transparency & Neighborhood Social Platform**  
 > Tailored for Malaysian Joint Management Bodies (JMB), Management Corporations (MC), and Strata Residents under the **Strata Management Act 2013 (Act 757)**.
 
 [![Cloudflare Pages](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Pages-F38020?logo=cloudflare&logoColor=white)](https://ezibiz-jmb.pages.dev)
-[![EziBiz Suite](https://img.shields.io/badge/EziBiz-Suite%20Module%204-f59e0b)](https://ezibiz-hub.pages.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ---
@@ -47,15 +46,4 @@ npm run dev
 
 # Build production bundle
 npm run build
-`
-
----
-
-## 🏛️ Ecosystem Integration
-
-Part of the **EziBiz Micro-Frontend Suite**:
-- **EziBiz Hub**: [https://ezibiz-hub.pages.dev](https://ezibiz-hub.pages.dev)
-- **EziBiz Akaun**: [https://ezibiz-akaun.pages.dev](https://ezibiz-akaun.pages.dev)
-- **EziBiz CRMS**: [https://ezibiz-crms.pages.dev](https://ezibiz-crms.pages.dev)
-- **EziBiz HRMS**: [https://ezibiz-hrms.pages.dev](https://ezibiz-hrms.pages.dev)
-- **EziBiz JMB**: [https://ezibiz-jmb.pages.dev](https://ezibiz-jmb.pages.dev)
+```
