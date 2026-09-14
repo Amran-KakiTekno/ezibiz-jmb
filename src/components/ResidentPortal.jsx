@@ -3,6 +3,7 @@ import {
   QrCode, 
   X
 } from 'lucide-react';
+import { useModalA11y } from './ConfirmModal';
 import ResidentBillsTab from './resident/ResidentBillsTab';
 import ResidentDefectsTab from './resident/ResidentDefectsTab';
 import VisitorPassTab from './resident/VisitorPassTab';
@@ -33,6 +34,7 @@ export default function ResidentPortal({
   const [paymentMethod, setPaymentMethod] = useState('duitnow'); // duitnow | fpx
   const [selectedBank, setSelectedBank] = useState('Maybank2u');
   const [isProcessingPay, setIsProcessingPay] = useState(false);
+  const payModalRef = useModalA11y(showPayModal, () => setShowPayModal(false));
 
   const handleExecutePayment = () => {
     setIsProcessingPay(true);
@@ -127,16 +129,29 @@ export default function ResidentPortal({
 
       {/* QUICK PAY MODAL (DUITNOW QR & FPX SIMULATOR) */}
       {showPayModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-md bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/[0.1] shadow-2xl rounded-2xl overflow-hidden p-6 space-y-5 text-slate-900 dark:text-white">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setShowPayModal(false)}
+        >
+          <div 
+            ref={payModalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quickpay-modal-title"
+            tabIndex={-1}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-md bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/[0.1] shadow-2xl rounded-2xl overflow-hidden p-6 space-y-5 text-slate-900 dark:text-white"
+          >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white text-base">{t('securePayment')}</h3>
+                <h3 id="quickpay-modal-title" className="font-semibold text-slate-900 dark:text-white text-base">{t('securePayment')}</h3>
                 <p className="text-xs text-slate-500 dark:text-zinc-400">{t('unitLabel')}: {resident.unitNo} • {resident.currentBill.period}</p>
               </div>
               <button
+                type="button"
                 onClick={() => setShowPayModal(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors cursor-pointer"
+                aria-label="Tutup"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

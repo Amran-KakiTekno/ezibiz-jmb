@@ -1,7 +1,10 @@
 import React from 'react';
 import { X, Printer, AlertTriangle, Scale, ShieldAlert, FileText } from 'lucide-react';
+import { useModalA11y } from './ConfirmModal';
 
 export default function Form28Modal({ isOpen, onClose, ticket, building }) {
+  const modalRef = useModalA11y(isOpen, onClose);
+
   if (!isOpen || !ticket) return null;
 
   const noticeDate = new Date().toLocaleDateString('en-MY', {
@@ -11,8 +14,16 @@ export default function Form28Modal({ isOpen, onClose, ticket, building }) {
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm printable-backdrop animate-in fade-in duration-200">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm printable-backdrop animate-in fade-in duration-200"
+      onClick={onClose}
+    >
       <div 
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="form28-modal-title"
+        tabIndex={-1}
         className="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-amber-500/30 rounded-2xl shadow-2xl overflow-hidden printable-card flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
@@ -20,7 +31,7 @@ export default function Form28Modal({ isOpen, onClose, ticket, building }) {
         <div className="no-print flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/90 sticky top-0 z-10">
           <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-semibold text-sm">
             <Scale className="w-5 h-5 text-amber-500" />
-            <span>Statutori Akta 757: Borang 28 (Notis Memeriksa Kebocoran Inter-Floor)</span>
+            <span id="form28-modal-title">Statutori Akta 757: Borang 28 (Notis Memeriksa Kebocoran Inter-Floor)</span>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -31,7 +42,9 @@ export default function Form28Modal({ isOpen, onClose, ticket, building }) {
               <span>Cetak Notis Statutori (A4)</span>
             </button>
             <button
+              type="button"
               onClick={onClose}
+              aria-label="Tutup"
               className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-slate-800 rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
             >
               <X className="w-5 h-5" />

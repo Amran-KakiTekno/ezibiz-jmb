@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Plus, MessageSquare } from 'lucide-react';
+import { useModalA11y } from '../ConfirmModal';
 
 export default function PasarKomunitiTab({ 
   resident, 
@@ -13,6 +14,7 @@ export default function PasarKomunitiTab({
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostPrice, setNewPostPrice] = useState('');
   const [newPostContent, setNewPostContent] = useState('');
+  const createModalRef = useModalA11y(showCreateModal, () => setShowCreateModal(false));
 
   const handleCreatePost = (e) => {
     e.preventDefault();
@@ -147,12 +149,25 @@ export default function PasarKomunitiTab({
       </div>
 
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-lg bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/[0.1] shadow-card-elevated rounded-2xl overflow-hidden p-6 space-y-4">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setShowCreateModal(false)}
+        >
+          <div 
+            ref={createModalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="create-post-title"
+            tabIndex={-1}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-lg bg-white dark:bg-zinc-950 border border-slate-200 dark:border-white/[0.1] shadow-card-elevated rounded-2xl overflow-hidden p-6 space-y-4"
+          >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
-              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Kongsi ke Komuniti Jiran</h3>
+              <h3 id="create-post-title" className="font-semibold text-slate-900 dark:text-white text-base">Kongsi ke Komuniti Jiran</h3>
               <button
+                type="button"
                 onClick={() => setShowCreateModal(false)}
+                aria-label="Tutup"
                 className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 ✕
