@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { ShieldCheck, Package, QrCode, CheckCircle2, AlertCircle, Plus } from 'lucide-react';
 
 export default function GuardhouseTab({ 
@@ -116,19 +116,19 @@ export default function GuardhouseTab({
             {verificationResult.valid && (
               <div className="grid grid-cols-2 gap-2 pt-2 border-t border-emerald-500/20 text-slate-700 dark:text-zinc-300">
                 <div>
-                  <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">Destinasi Petak:</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] block">Destinasi Petak:</span>
                   <span className="font-semibold text-slate-900 dark:text-white">{verificationResult.destination}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">Nama Pelawat:</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] block">Nama Pelawat:</span>
                   <span className="font-semibold text-slate-900 dark:text-white">{verificationResult.visitor}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">No. Plat:</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] block">No. Plat:</span>
                   <span className="font-mono tabular-nums text-amber-600 dark:text-amber-400 font-bold">{verificationResult.plate}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">Tindakan Palang:</span>
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] block">Tindakan Palang:</span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-bold">BUKA PALANG (AUTO OPEN)</span>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function GuardhouseTab({
                 <div>
                   <span className="font-mono tabular-nums font-bold text-amber-600 dark:text-amber-400">{p.unit}</span>
                   <span className="text-slate-900 dark:text-zinc-200 ml-2">{p.recipient}</span>
-                  <span className="block text-[11px] text-slate-400 dark:text-zinc-500 font-mono mt-0.5">{p.courier} • {p.trackingNo}</span>
+                  <span className="block text-[11px] text-slate-400 dark:text-slate-400 font-mono mt-0.5">{p.courier} â€¢ {p.trackingNo}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -241,3 +241,4 @@ export default function GuardhouseTab({
     </div>
   );
 }
+

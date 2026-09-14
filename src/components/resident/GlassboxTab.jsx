@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { BarChart3, ShieldCheck } from 'lucide-react';
 
 export default function GlassboxTab({ building, expenditures }) {
@@ -41,7 +41,7 @@ export default function GlassboxTab({ building, expenditures }) {
             <span className="font-mono tabular-nums font-semibold text-2xl text-slate-900 dark:text-zinc-100">
               RM {building.bankAccounts.maintenance.balance.toLocaleString()}
             </span>
-            <p className="text-[11px] text-slate-400 dark:text-zinc-500 mt-1 font-mono">Maybank Islamic • 5641 2890 1142</p>
+            <p className="text-[11px] text-slate-400 dark:text-slate-400 mt-1 font-mono">Maybank Islamic â€¢ 5641 2890 1142</p>
           </div>
         </div>
 
@@ -63,15 +63,15 @@ export default function GlassboxTab({ building, expenditures }) {
                     </span>
                     <span className="font-semibold text-slate-800 dark:text-zinc-200">{exp.category}</span>
                   </div>
-                  <p className="text-slate-500 dark:text-zinc-400">{exp.vendor} • Ref: <span className="font-mono text-slate-700 dark:text-zinc-300">{exp.invoiceRef}</span></p>
-                  <p className="text-[11px] text-slate-400 dark:text-zinc-500">{exp.description}</p>
+                  <p className="text-slate-500 dark:text-zinc-400">{exp.vendor} â€¢ Ref: <span className="font-mono text-slate-700 dark:text-zinc-300">{exp.invoiceRef}</span></p>
+                  <p className="text-[11px] text-slate-400 dark:text-slate-400">{exp.description}</p>
                 </div>
 
                 <div className="sm:text-right shrink-0">
                   <span className="font-mono tabular-nums font-semibold text-base text-slate-900 dark:text-zinc-100">
                     RM {exp.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                   </span>
-                  <span className="block text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">✓ Resit Disahkan Bendahari</span>
+                  <span className="block text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">âœ“ Resit Disahkan Bendahari</span>
                 </div>
               </div>
             ))}
@@ -81,3 +81,4 @@ export default function GlassboxTab({ building, expenditures }) {
     </div>
   );
 }
+

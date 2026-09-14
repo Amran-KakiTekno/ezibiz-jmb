@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   CreditCard, 
   CheckCircle2, 
@@ -21,10 +21,10 @@ export default function ResidentBillsTab({ resident, onPayClick, onViewReceiptCl
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-slate-900 dark:text-white text-base">Invois Penyelenggaraan & Sinking Fund</h3>
-                <span className="text-xs font-mono text-slate-400 dark:text-zinc-500">({bill.billId})</span>
+                <span className="text-xs font-mono text-slate-400 dark:text-slate-400">({bill.billId})</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                Tempoh: <span className="text-slate-700 dark:text-zinc-200 font-medium">{bill.period}</span> • Tarikh Akhir: <span className="text-amber-600 dark:text-amber-400 font-medium">{bill.dueDate}</span>
+                Tempoh: <span className="text-slate-700 dark:text-zinc-200 font-medium">{bill.period}</span> â€¢ Tarikh Akhir: <span className="text-amber-600 dark:text-amber-400 font-medium">{bill.dueDate}</span>
               </p>
             </div>
 
@@ -54,7 +54,7 @@ export default function ResidentBillsTab({ resident, onPayClick, onViewReceiptCl
             </div>
             <div className="flex justify-between items-center text-xs pt-1 border-t border-slate-100 dark:border-white/[0.05]">
               <span className="text-slate-500 dark:text-zinc-400">Tunggakan Terdahulu:</span>
-              <span className="font-mono tabular-nums text-slate-400 dark:text-zinc-500">RM 0.00</span>
+              <span className="font-mono tabular-nums text-slate-400 dark:text-slate-400">RM 0.00</span>
             </div>
             <div className="flex justify-between items-center pt-3 border-t border-slate-200 dark:border-white/[0.08]">
               <span className="font-semibold text-sm text-slate-700 dark:text-zinc-200">Jumlah Perlu Dibayar:</span>
@@ -75,7 +75,7 @@ export default function ResidentBillsTab({ resident, onPayClick, onViewReceiptCl
                 onClick={onPayClick}
                 className="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-semibold text-xs shadow-rim transition-all flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
               >
-                <span>⚡ Bayar Pantas Sekarang (DuitNow QR / FPX)</span>
+                <span>âš¡ Bayar Pantas Sekarang (DuitNow QR / FPX)</span>
               </button>
             ) : (
               <button
@@ -112,7 +112,7 @@ export default function ResidentBillsTab({ resident, onPayClick, onViewReceiptCl
             <div key={idx} className="p-3.5 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-white/[0.08] shadow-rim flex items-center justify-between text-xs">
               <div>
                 <p className="font-semibold text-slate-800 dark:text-zinc-200">{item.month}</p>
-                <p className="text-[11px] text-slate-400 dark:text-zinc-500">Dibayar pada {item.date}</p>
+                <p className="text-[11px] text-slate-400 dark:text-slate-400">Dibayar pada {item.date}</p>
               </div>
               <div className="text-right">
                 <span className="font-mono tabular-nums text-slate-800 dark:text-zinc-200 font-semibold">RM {item.amount}</span>
@@ -134,3 +134,4 @@ export default function ResidentBillsTab({ resident, onPayClick, onViewReceiptCl
     </div>
   );
 }
+

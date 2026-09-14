@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import ConfirmModal from '../ConfirmModal';
 import { 
   Search, 
@@ -47,7 +47,7 @@ export default function UnitDirectoryTab({
       {/* Search & Filter Header */}
       <div className="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 dark:text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
@@ -100,7 +100,7 @@ export default function UnitDirectoryTab({
                   {/* Unit & Tower */}
                   <td className="py-3.5 px-4 whitespace-nowrap">
                     <span className="font-mono font-bold text-amber-600 dark:text-amber-400 text-sm">{unit.unitNo}</span>
-                    <span className="block text-[11px] text-slate-500 dark:text-slate-400">{unit.tower} • Tingkat {unit.floor}</span>
+                    <span className="block text-[11px] text-slate-500 dark:text-slate-400">{unit.tower} â€¢ Tingkat {unit.floor}</span>
                   </td>
 
                   {/* Owner / Occupant */}
@@ -112,7 +112,7 @@ export default function UnitDirectoryTab({
                   {/* Sqft & Share Units */}
                   <td className="py-3.5 px-4 whitespace-nowrap text-slate-700 dark:text-slate-300">
                     <span>{unit.sqft} kps</span>
-                    <span className="block text-[11px] text-slate-400 dark:text-slate-500">({unit.shareUnits} Syer)</span>
+                    <span className="block text-[11px] text-slate-400 dark:text-slate-400">({unit.shareUnits} Syer)</span>
                   </td>
 
                   {/* RFID Card Status */}
@@ -144,7 +144,7 @@ export default function UnitDirectoryTab({
                         </>
                       )}
                     </button>
-                    <span className="block text-[11px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">{unit.cardSerial}</span>
+                    <span className="block text-[11px] text-slate-400 dark:text-slate-400 font-mono mt-0.5">{unit.cardSerial}</span>
                   </td>
 
                   {/* Balance & Status */}
@@ -187,7 +187,7 @@ export default function UnitDirectoryTab({
                           </button>
                         </>
                       ) : (
-                        <span className="text-slate-400 dark:text-slate-500 text-[11px] italic">Tiada Tunggakan</span>
+                        <span className="text-slate-400 dark:text-slate-400 text-[11px] italic">Tiada Tunggakan</span>
                       )}
                     </div>
                   </td>
@@ -216,3 +216,4 @@ export default function UnitDirectoryTab({
     </div>
   );
 }
+

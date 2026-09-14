@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { QrCode, Share2 } from 'lucide-react';
 
 export default function VisitorPassTab({ resident, building, showToast }) {
@@ -86,7 +86,7 @@ export default function VisitorPassTab({ resident, building, showToast }) {
         {generatedPass ? (
           <div className="rounded-2xl bg-white dark:bg-zinc-950 border border-amber-500/30 shadow-card-elevated p-6 space-y-5 text-center relative overflow-hidden">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider">
-              <span>Pas Pelawat Sah • 1 Hari</span>
+              <span>Pas Pelawat Sah â€¢ 1 Hari</span>
             </div>
 
             <div>
@@ -104,11 +104,11 @@ export default function VisitorPassTab({ resident, building, showToast }) {
 
             <div className="grid grid-cols-2 gap-3 text-xs bg-slate-50 dark:bg-zinc-900/80 p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] shadow-rim">
               <div className="text-left">
-                <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">Nama Pelawat:</span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px] block">Nama Pelawat:</span>
                 <span className="font-semibold text-slate-800 dark:text-zinc-200">{generatedPass.name}</span>
               </div>
               <div className="text-right">
-                <span className="text-slate-500 dark:text-zinc-500 text-[11px] block">No. Kenderaan:</span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px] block">No. Kenderaan:</span>
                 <span className="font-mono tabular-nums font-bold text-amber-600 dark:text-amber-400">{generatedPass.plate}</span>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function VisitorPassTab({ resident, building, showToast }) {
             </a>
           </div>
         ) : (
-          <div className="rounded-2xl bg-slate-50 dark:bg-zinc-950/40 border border-dashed border-slate-300 dark:border-zinc-800 p-12 text-center text-slate-500 dark:text-zinc-500 space-y-3">
+          <div className="rounded-2xl bg-slate-50 dark:bg-zinc-950/40 border border-dashed border-slate-300 dark:border-zinc-800 p-12 text-center text-slate-500 dark:text-slate-400 space-y-3">
             <QrCode className="w-12 h-12 mx-auto text-slate-400 dark:text-zinc-600 stroke-[1.5]" />
             <p className="text-xs">Isi maklumat di sebelah untuk menjana Pas Masuk QR kenderaan pelawat.</p>
           </div>
@@ -133,3 +133,4 @@ export default function VisitorPassTab({ resident, building, showToast }) {
     </div>
   );
 }
+

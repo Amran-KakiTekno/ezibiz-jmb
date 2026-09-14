@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import ConfirmModal from '../ConfirmModal';
 import { Megaphone, Vote, CheckCircle2, Plus, AlertCircle } from 'lucide-react';
 
@@ -21,7 +21,7 @@ export default function AgmNoticeTab({
     const newNotice = {
       id: `post_${Date.now()}`,
       category: 'ANNOUNCEMENT',
-      title: `📢 ${noticeTitle}`,
+      title: `ðŸ“¢ ${noticeTitle}`,
       author: 'Pejabat Pengurusan JMB',
       authorRole: 'JMB Committee',
       unit: 'Management',
@@ -116,7 +116,7 @@ export default function AgmNoticeTab({
                   <div className="flex justify-between text-xs">
                     <span className="text-slate-500 dark:text-slate-400">Persetujuan Kuorum ({approvalPercent}%)</span>
                     <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400">
-                      {res.votesInFavor} Menyokong • {res.votesAgainst} Menentang
+                      {res.votesInFavor} Menyokong â€¢ {res.votesAgainst} Menentang
                     </span>
                   </div>
                   <div className="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden flex">
@@ -129,7 +129,7 @@ export default function AgmNoticeTab({
                       style={{ width: `${100 - approvalPercent}%` }}
                     ></div>
                   </div>
-                  <div className="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 pt-1">
+                  <div className="flex justify-between text-[11px] text-slate-400 dark:text-slate-400 pt-1">
                     <span>Diperlukan: {res.statutoryRequirement}</span>
                     <span>Jumlah Mengundi: {res.totalVoted} / {res.quorumNeeded} Pemilik</span>
                   </div>
@@ -149,7 +149,7 @@ export default function AgmNoticeTab({
                       }}
                       className="flex-1 py-2 px-3 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-semibold text-xs transition-colors min-h-[44px] cursor-pointer"
                     >
-                      ✓ Sokong (Undi Ya)
+                      âœ“ Sokong (Undi Ya)
                     </button>
                     <button
                       type="button"
@@ -162,7 +162,7 @@ export default function AgmNoticeTab({
                       }}
                       className="flex-1 py-2 px-3 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-700 dark:text-rose-300 font-semibold text-xs transition-colors min-h-[44px] cursor-pointer"
                     >
-                      ✕ Bantah (Undi Tidak)
+                      âœ• Bantah (Undi Tidak)
                     </button>
                   </div>
                 )}
@@ -195,3 +195,4 @@ export default function AgmNoticeTab({
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Wrench, Scale, Clock, AlertTriangle, CheckCircle2, UserCheck } from 'lucide-react';
 
 export default function DefectKanbanTab({ 
@@ -85,7 +85,7 @@ export default function DefectKanbanTab({
                   <span>Jana Borang 28 (Akta 757)</span>
                 </button>
               ) : (
-                <div className="text-[11px] text-slate-400 dark:text-slate-500">Aduan Biasa</div>
+                <div className="text-[11px] text-slate-400 dark:text-slate-400">Aduan Biasa</div>
               )}
 
               {/* Status Update Button */}
@@ -115,3 +115,4 @@ export default function DefectKanbanTab({
     </div>
   );
 }
+

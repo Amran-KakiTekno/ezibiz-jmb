@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Building2, 
@@ -308,7 +308,7 @@ export default function App() {
                       {t('act757')}
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-zinc-500 truncate">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
                     {building.name}
                   </p>
                 </div>
@@ -546,7 +546,7 @@ export default function App() {
               className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer ${
                 isActive 
                   ? 'text-amber-700 dark:text-amber-400 font-semibold' 
-                  : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
+                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-zinc-300'
               }`}
             >
               <Icon className="w-5 h-5 mb-0.5" />
@@ -555,7 +555,7 @@ export default function App() {
           );
         })}
 
-        {/* 5th Slot: More (⋯) Button */}
+        {/* 5th Slot: More (â‹¯) Button */}
         {(() => {
           const isFifthActive = activeTab === currentNavItems[4]?.id;
           return (
@@ -565,7 +565,7 @@ export default function App() {
               className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer relative ${
                 isFifthActive || showMoreDrawer
                   ? 'text-amber-700 dark:text-amber-400 font-semibold'
-                  : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
+                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-zinc-300'
               }`}
             >
               <div className="relative">
@@ -582,7 +582,7 @@ export default function App() {
         })()}
       </nav>
 
-      {/* MORE (⋯) DRAWER (Mobile) */}
+      {/* MORE (â‹¯) DRAWER (Mobile) */}
       {showMoreDrawer && (
         <div className="md:hidden fixed inset-0 z-50 flex flex-col justify-end">
           {/* Backdrop */}
@@ -761,3 +761,4 @@ export default function App() {
     </div>
   );
 }
+

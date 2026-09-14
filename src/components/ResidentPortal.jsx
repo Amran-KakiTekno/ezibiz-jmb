@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   QrCode, 
   X
@@ -59,13 +59,13 @@ export default function ResidentPortal({
               </span>
               <span className="text-xs text-slate-500 dark:text-zinc-400">{t('unitLabel')}:</span>
               <span className="font-mono font-bold text-amber-600 dark:text-amber-400">{resident.unitNo}</span>
-              <span className="text-xs text-slate-400 dark:text-zinc-500">• {resident.tower}</span>
+              <span className="text-xs text-slate-400 dark:text-slate-400">â€¢ {resident.tower}</span>
             </div>
             <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mt-1">
               {t('greeting', { name: resident.name })}
             </h2>
             <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">
-              {t('parkingBay')}: <span className="text-slate-700 dark:text-zinc-300 font-medium">{resident.parkingBay}</span> • {t('accessCard')}: <span className="font-mono text-slate-700 dark:text-zinc-300">{resident.accessCardNo}</span>
+              {t('parkingBay')}: <span className="text-slate-700 dark:text-zinc-300 font-medium">{resident.parkingBay}</span> â€¢ {t('accessCard')}: <span className="font-mono text-slate-700 dark:text-zinc-300">{resident.accessCardNo}</span>
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export default function ResidentPortal({
 
             {residentParcels.length > 0 && (
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-800 dark:text-amber-300 shadow-xs">
-                <span>📦 {residentParcels.length} {t('parcelsAtGuardhouse')}</span>
+                <span>ðŸ“¦ {residentParcels.length} {t('parcelsAtGuardhouse')}</span>
               </div>
             )}
           </div>
@@ -145,7 +145,7 @@ export default function ResidentPortal({
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/[0.08] pb-3">
               <div>
                 <h3 id="quickpay-modal-title" className="font-semibold text-slate-900 dark:text-white text-base">{t('securePayment')}</h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-400">{t('unitLabel')}: {resident.unitNo} • {resident.currentBill.period}</p>
+                <p className="text-xs text-slate-500 dark:text-zinc-400">{t('unitLabel')}: {resident.unitNo} â€¢ {resident.currentBill.period}</p>
               </div>
               <button
                 type="button"
@@ -237,3 +237,4 @@ export default function ResidentPortal({
     </div>
   );
 }
+

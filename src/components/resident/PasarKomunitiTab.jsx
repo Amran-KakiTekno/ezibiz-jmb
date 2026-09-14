@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { ShoppingBag, Plus, MessageSquare } from 'lucide-react';
 import { useModalA11y } from '../ConfirmModal';
 
@@ -65,10 +65,10 @@ export default function PasarKomunitiTab({
               }`}
             >
               {cat === 'ALL' ? 'Semua Saluran' :
-               cat === 'ANNOUNCEMENT' ? '📢 Notis Rasmi' :
-               cat === 'MARKETPLACE' ? '🥖 Pasar Komuniti' :
-               cat === 'CARPOOL' ? '🚗 Kongsi Kereta' :
-               cat === 'PARKING' ? '🅿️ Sewa Parkir' : '🔍 Hilang & Jumpa'}
+               cat === 'ANNOUNCEMENT' ? 'ðŸ“¢ Notis Rasmi' :
+               cat === 'MARKETPLACE' ? 'ðŸ¥– Pasar Komuniti' :
+               cat === 'CARPOOL' ? 'ðŸš— Kongsi Kereta' :
+               cat === 'PARKING' ? 'ðŸ…¿ï¸ Sewa Parkir' : 'ðŸ” Hilang & Jumpa'}
             </button>
           ))}
         </div>
@@ -109,7 +109,7 @@ export default function PasarKomunitiTab({
                         {post.unit}
                       </span>
                     </div>
-                    <span className="text-[11px] text-slate-500 dark:text-zinc-500">{post.timestamp}</span>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400">{post.timestamp}</span>
                   </div>
                 </div>
 
@@ -126,9 +126,9 @@ export default function PasarKomunitiTab({
 
             <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.08] flex items-center justify-between text-xs text-slate-500 dark:text-zinc-400">
               <div className="flex items-center gap-4 text-[11px]">
-                <span>❤️ {post.likes}</span>
+                <span>â¤ï¸ {post.likes}</span>
                 {post.readReceiptsCount && (
-                  <span className="text-emerald-600 dark:text-emerald-400">✓ {post.readReceiptsCount} Dibaca</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">âœ“ {post.readReceiptsCount} Dibaca</span>
                 )}
               </div>
 
@@ -170,7 +170,7 @@ export default function PasarKomunitiTab({
                 aria-label="Tutup"
                 className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-900 transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
-                ✕
+                âœ•
               </button>
             </div>
 
@@ -245,3 +245,4 @@ export default function PasarKomunitiTab({
     </div>
   );
 }
+
