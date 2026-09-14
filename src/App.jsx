@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Building2, 
@@ -23,6 +23,7 @@ import ManagementDesk from './components/ManagementDesk';
 import ReceiptModal from './components/ReceiptModal';
 import Form28Modal from './components/Form28Modal';
 import SettingsModal from './components/SettingsModal';
+import ManualPaymentModal from './components/ManualPaymentModal';
 import { useSettings } from './utils/useSettings';
 import { 
   BUILDING_PROFILE, 
@@ -41,8 +42,42 @@ export default function App() {
   const [showMoreDrawer, setShowMoreDrawer] = useState(false);
 
   // Master State
-  const [persona, setPersona] = useState('RESIDENT'); // RESIDENT | MANAGEMENT
-  const [activeTab, setActiveTab] = useState('bills');
+  const [persona, setPersona] = useState(() => (typeof window !== 'undefined' && window.location.hash.startsWith('#management') ? 'MANAGEMENT' : 'RESIDENT'));
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window === 'undefined') return 'bills';
+    const isMgmt = window.location.hash.startsWith('#management');
+    const m = window.location.hash.match(/^#(?:management|resident|residents)\/([\w-]+)/);
+    const valid = ['bills', 'defects', 'visitor', 'community', 'market', 'glassbox', 'kpis', 'units', 'agm', 'kanban', 'guardhouse'];
+    if (m && valid.includes(m[1])) {
+      return m[1] === 'market' ? 'community' : m[1] === 'kanban' ? 'defects' : m[1];
+    }
+    return isMgmt ? 'kpis' : 'bills';
+  });
+
+  useEffect(() => {
+    const personaSlug = persona === 'MANAGEMENT' ? 'management' : 'resident';
+    const hash = `#${personaSlug}/${activeTab}`;
+    if (window.location.hash !== hash) {
+      window.history.replaceState(null, '', hash);
+    }
+  }, [persona, activeTab]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const isMgmt = window.location.hash.startsWith('#management');
+      const newPersona = isMgmt ? 'MANAGEMENT' : 'RESIDENT';
+      const m = window.location.hash.match(/^#(?:management|resident|residents)\/([\w-]+)/);
+      const valid = ['bills', 'defects', 'visitor', 'community', 'market', 'glassbox', 'kpis', 'units', 'agm', 'kanban', 'guardhouse'];
+      const newTab = m && valid.includes(m[1]) 
+        ? (m[1] === 'market' ? 'community' : m[1] === 'kanban' ? 'defects' : m[1]) 
+        : (isMgmt ? 'kpis' : 'bills');
+      setPersona(newPersona);
+      setActiveTab(newTab);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
   const [viewportMode, setViewportMode] = useState('responsive'); // responsive | mobile
   const [building, setBuilding] = useState(BUILDING_PROFILE);
   const [resident, setResident] = useState(CURRENT_RESIDENT);
@@ -56,6 +91,7 @@ export default function App() {
   // Modals & Toast State
   const [showReceiptModal, setShowReceiptModal] = useState(false);
   const [form28Ticket, setForm28Ticket] = useState(null);
+  const [manualPayTarget, setManualPayTarget] = useState(null);
   const [toast, setToast] = useState(null);
 
   const showToast = (message, type = 'info') => {
@@ -156,11 +192,27 @@ export default function App() {
   };
 
   // Action: Record manual payment (Management)
-  const handleRecordManualPayment = (unitId) => {
+  const handleOpenManualPayment = (unitId) => {
+    const target = units.find(u => u.id === unitId);
+    if (target) {
+      setManualPayTarget(target);
+    }
+  };
+
+  const handleConfirmManualPayment = (unitId, amount, ref) => {
     setUnits(prev => prev.map(u => {
       if (u.id === unitId) {
-        showToast(`Manual payment RM ${u.balance.toFixed(2)} for Unit ${u.unitNo} recorded.`, 'success');
-        return { ...u, balance: 0.00, status: 'PAID', daysOverdue: 0 };
+        const remaining = Math.max(0, u.balance - amount);
+        const nextStatus = remaining === 0 ? 'PAID' : 'OVERDUE';
+        const nextDays = remaining === 0 ? 0 : u.daysOverdue;
+        const refText = ref ? ` (Ruj: ${ref})` : '';
+        showToast(`Bayaran manual RM ${amount.toFixed(2)} untuk Unit ${u.unitNo}${refText} direkodkan. Baki: RM ${remaining.toFixed(2)}`, 'success');
+        return {
+          ...u,
+          balance: remaining,
+          status: nextStatus,
+          daysOverdue: nextDays
+        };
       }
       return u;
     }));
@@ -252,11 +304,11 @@ export default function App() {
                     <span className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight block truncate">
                       EziBiz JMB
                     </span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono border border-amber-500/20">
+                    <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono border border-amber-500/20">
                       {t('act757')}
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-zinc-500 truncate">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
                     {building.name}
                   </p>
                 </div>
@@ -418,7 +470,7 @@ export default function App() {
                       resolutions={resolutions}
                       parcels={parcels}
                       onToggleCardStatus={handleToggleCardStatus}
-                      onRecordManualPayment={handleRecordManualPayment}
+                      onRecordManualPayment={handleOpenManualPayment}
                       onOpenForm28={setForm28Ticket}
                       onUpdateDefectStatus={handleUpdateDefectStatus}
                       onCastVote={handleCastVote}
@@ -464,7 +516,7 @@ export default function App() {
                 resolutions={resolutions}
                 parcels={parcels}
                 onToggleCardStatus={handleToggleCardStatus}
-                onRecordManualPayment={handleRecordManualPayment}
+                onRecordManualPayment={handleOpenManualPayment}
                 onOpenForm28={setForm28Ticket}
                 onUpdateDefectStatus={handleUpdateDefectStatus}
                 onCastVote={handleCastVote}
@@ -491,10 +543,10 @@ export default function App() {
               key={item.id}
               type="button"
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center justify-center flex-1 py-1 text-[10px] font-medium transition-colors cursor-pointer ${
+              className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer ${
                 isActive 
-                  ? 'text-amber-600 dark:text-amber-400 font-semibold' 
-                  : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
+                  ? 'text-amber-700 dark:text-amber-400 font-semibold' 
+                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-zinc-300'
               }`}
             >
               <Icon className="w-5 h-5 mb-0.5" />
@@ -503,17 +555,17 @@ export default function App() {
           );
         })}
 
-        {/* 5th Slot: More (⋯) Button */}
+        {/* 5th Slot: More (â‹¯) Button */}
         {(() => {
           const isFifthActive = activeTab === currentNavItems[4]?.id;
           return (
             <button
               type="button"
               onClick={() => setShowMoreDrawer(true)}
-              className={`flex flex-col items-center justify-center flex-1 py-1 text-[10px] font-medium transition-colors cursor-pointer relative ${
+              className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer relative ${
                 isFifthActive || showMoreDrawer
-                  ? 'text-amber-600 dark:text-amber-400 font-semibold'
-                  : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
+                  ? 'text-amber-700 dark:text-amber-400 font-semibold'
+                  : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-zinc-300'
               }`}
             >
               <div className="relative">
@@ -530,7 +582,7 @@ export default function App() {
         })()}
       </nav>
 
-      {/* MORE (⋯) DRAWER (Mobile) */}
+      {/* MORE (â‹¯) DRAWER (Mobile) */}
       {showMoreDrawer && (
         <div className="md:hidden fixed inset-0 z-50 flex flex-col justify-end">
           {/* Backdrop */}
@@ -594,15 +646,13 @@ export default function App() {
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-sm truncate">{fifth.label}</span>
                       {isFifthActive && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-medium">
+                        <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-medium">
                           {t('active')}
                         </span>
                       )}
                     </div>
                     <p className="text-xs text-slate-500 dark:text-zinc-400 truncate mt-0.5">
-                      {persona === 'RESIDENT'
-                        ? (language === 'ms' ? 'Penyata kewangan & audit terbuka JMB' : 'Act 757 verified transparent accounts & runway')
-                        : (language === 'ms' ? 'Pondok pengawal, log pelawat & bungkusan' : 'Security checkpoint & parcel intake logs')}
+                      {persona === 'RESIDENT' ? t('glassboxSub') : t('guardhouseSub')}
                     </p>
                   </div>
                 </button>
@@ -624,7 +674,7 @@ export default function App() {
                 </div>
                 <div className="min-w-0">
                   <span className="font-semibold text-xs text-slate-900 dark:text-white block truncate">{t('settings')}</span>
-                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block truncate">{theme === 'dark' ? t('themeDark') : t('themeLight')}</span>
+                  <span className="text-[11px] text-slate-500 dark:text-zinc-400 block truncate">{theme === 'dark' ? t('themeDark') : t('themeLight')}</span>
                 </div>
               </button>
 
@@ -643,8 +693,8 @@ export default function App() {
                   <span className="font-semibold text-xs text-slate-900 dark:text-white block truncate">
                     {persona === 'RESIDENT' ? t('managementPersona') : t('residentPersona')}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block truncate">
-                    {language === 'ms' ? 'Tukar Portal' : 'Switch Role'}
+                  <span className="text-[11px] text-slate-500 dark:text-zinc-400 block truncate">
+                    {t('switchRole')}
                   </span>
                 </div>
               </button>
@@ -670,6 +720,14 @@ export default function App() {
         building={building}
       />
 
+      {/* Manual Payment Entry Modal */}
+      <ManualPaymentModal
+        isOpen={!!manualPayTarget}
+        onClose={() => setManualPayTarget(null)}
+        unit={manualPayTarget}
+        onConfirmPayment={handleConfirmManualPayment}
+      />
+
       {/* Settings Modal */}
       <SettingsModal
         isOpen={showSettingsModal}
@@ -683,7 +741,7 @@ export default function App() {
 
       {/* Toast Alert Banner */}
       {toast && (
-        <div className="fixed bottom-20 md:bottom-6 right-4 z-50 animate-in slide-in-from-bottom-3 duration-300">
+        <div role="status" aria-live="polite" className="fixed bottom-20 md:bottom-6 right-4 z-50 animate-in slide-in-from-bottom-3 duration-300">
           <div className={`px-4 py-3 rounded-xl shadow-lg text-xs font-medium flex items-center gap-2.5 border ${
             toast.type === 'success' 
               ? 'bg-white/95 dark:bg-zinc-950/95 text-emerald-700 dark:text-emerald-300 border-emerald-500/30'
@@ -703,3 +761,4 @@ export default function App() {
     </div>
   );
 }
+
