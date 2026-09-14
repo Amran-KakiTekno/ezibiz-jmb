@@ -304,7 +304,7 @@ export default function App() {
                     <span className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight block truncate">
                       EziBiz JMB
                     </span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-mono border border-amber-500/20">
+                    <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono border border-amber-500/20">
                       {t('act757')}
                     </span>
                   </div>
@@ -543,9 +543,9 @@ export default function App() {
               key={item.id}
               type="button"
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center justify-center flex-1 py-1 text-[10px] font-medium transition-colors cursor-pointer ${
+              className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer ${
                 isActive 
-                  ? 'text-amber-600 dark:text-amber-400 font-semibold' 
+                  ? 'text-amber-700 dark:text-amber-400 font-semibold' 
                   : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
               }`}
             >
@@ -562,9 +562,9 @@ export default function App() {
             <button
               type="button"
               onClick={() => setShowMoreDrawer(true)}
-              className={`flex flex-col items-center justify-center flex-1 py-1 text-[10px] font-medium transition-colors cursor-pointer relative ${
+              className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] text-[11px] font-medium transition-colors cursor-pointer relative ${
                 isFifthActive || showMoreDrawer
-                  ? 'text-amber-600 dark:text-amber-400 font-semibold'
+                  ? 'text-amber-700 dark:text-amber-400 font-semibold'
                   : 'text-slate-500 hover:text-slate-800 dark:text-zinc-500 dark:hover:text-zinc-300'
               }`}
             >
@@ -646,7 +646,7 @@ export default function App() {
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-sm truncate">{fifth.label}</span>
                       {isFifthActive && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-medium">
+                        <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-medium">
                           {t('active')}
                         </span>
                       )}
@@ -676,7 +676,7 @@ export default function App() {
                 </div>
                 <div className="min-w-0">
                   <span className="font-semibold text-xs text-slate-900 dark:text-white block truncate">{t('settings')}</span>
-                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block truncate">{theme === 'dark' ? t('themeDark') : t('themeLight')}</span>
+                  <span className="text-[11px] text-slate-500 dark:text-zinc-400 block truncate">{theme === 'dark' ? t('themeDark') : t('themeLight')}</span>
                 </div>
               </button>
 
@@ -695,7 +695,7 @@ export default function App() {
                   <span className="font-semibold text-xs text-slate-900 dark:text-white block truncate">
                     {persona === 'RESIDENT' ? t('managementPersona') : t('residentPersona')}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block truncate">
+                  <span className="text-[11px] text-slate-500 dark:text-zinc-400 block truncate">
                     {language === 'ms' ? 'Tukar Portal' : 'Switch Role'}
                   </span>
                 </div>

@@ -38,34 +38,37 @@ export default function VisitorPassTab({ resident, building, showToast }) {
 
         <form onSubmit={handleGenerate} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Nama Penuh Pelawat</label>
+            <label htmlFor="visitor-name" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Nama Penuh Pelawat</label>
             <input
+              id="visitor-name"
               type="text"
               value={visitorName}
               onChange={(e) => setVisitorName(e.target.value)}
               placeholder="Cth: Kamarul Ariffin"
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">No. Pendaftaran Kenderaan (Plat Kereta)</label>
+            <label htmlFor="visitor-plate" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">No. Pendaftaran Kenderaan (Plat Kereta)</label>
             <input
+              id="visitor-plate"
               type="text"
               value={visitorPlate}
               onChange={(e) => setVisitorPlate(e.target.value)}
               placeholder="Cth: VDK 8892"
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono uppercase"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono uppercase"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Tarikh Lawatan</label>
+            <label htmlFor="visitor-date" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Tarikh Lawatan</label>
             <input
+              id="visitor-date"
               type="date"
               value={visitorDate}
               onChange={(e) => setVisitorDate(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50 font-mono"
             />
           </div>
 

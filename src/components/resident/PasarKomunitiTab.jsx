@@ -101,7 +101,7 @@ export default function PasarKomunitiTab({
                   <div>
                     <div className="flex items-center gap-1.5">
                       <span className="font-semibold text-xs text-slate-900 dark:text-white">{post.author}</span>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                      <span className={`text-[11px] px-1.5 py-0.5 rounded font-medium ${
                         post.isOfficial 
                           ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30 font-mono'
                           : 'bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 font-mono'

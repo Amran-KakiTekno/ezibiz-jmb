@@ -8,7 +8,7 @@ export default function GlassboxTab({ building, expenditures }) {
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-semibold text-slate-900 dark:text-white text-base">Ketelusan Kewangan Komuniti (Glassbox Ledger)</h3>
-            <span className="px-2 py-0.5 rounded-full text-[10px] bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-medium">
+            <span className="px-2 py-0.5 rounded-full text-[11px] bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-medium">
               Diaudit & Disahkan
             </span>
           </div>
@@ -54,7 +54,7 @@ export default function GlassboxTab({ building, expenditures }) {
               <div key={exp.id} className="p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/40 border border-slate-200 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/[0.12] flex flex-col sm:flex-row justify-between sm:items-center gap-3 text-xs transition-all shadow-rim">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-medium ${
+                    <span className={`text-[11px] px-2 py-0.5 rounded font-mono font-medium ${
                       exp.fund === 'SINKING_FUND'
                         ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30'
                         : 'bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300'

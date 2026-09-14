@@ -76,16 +76,17 @@ export default function GuardhouseTab({
 
         <form onSubmit={handleVerifyPass} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">
+            <label htmlFor="guardhouse-verify-code" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">
               Imbas Kod QR / Masukkan Kod Pas Pelawat
             </label>
             <div className="flex gap-2">
               <input
+                id="guardhouse-verify-code"
                 type="text"
                 value={verifyCode}
                 onChange={(e) => setVerifyCode(e.target.value)}
                 placeholder="Cth: RSD-VIS-4921"
-                className="flex-1 px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-100 font-mono focus:outline-none focus:border-amber-500/50 uppercase"
+                className="flex-1 px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-100 font-mono focus:outline-none focus:border-amber-500/50 uppercase"
               />
               <button
                 type="submit"
@@ -146,11 +147,12 @@ export default function GuardhouseTab({
         <form onSubmit={handleLogParcelSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Unit Sasaran</label>
+              <label htmlFor="parcel-unit" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Unit Sasaran</label>
               <select
+                id="parcel-unit"
                 value={parcelUnit}
                 onChange={(e) => setParcelUnit(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
+                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
               >
                 <option value="B-14-02">B-14-02 (Ir. Hazim)</option>
                 <option value="A-08-01">A-08-01 (Ahmad Fauzi)</option>
@@ -160,11 +162,12 @@ export default function GuardhouseTab({
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Syarikat Kurier</label>
+              <label htmlFor="parcel-courier" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Syarikat Kurier</label>
               <select
+                id="parcel-courier"
                 value={parcelCourier}
                 onChange={(e) => setParcelCourier(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
+                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
               >
                 <option value="Shopee Xpress">Shopee Xpress</option>
                 <option value="J&T Express">J&T Express</option>
@@ -177,24 +180,26 @@ export default function GuardhouseTab({
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">No. Penjejakan (Tracking No)</label>
+              <label htmlFor="parcel-tracking" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">No. Penjejakan (Tracking No)</label>
               <input
+                id="parcel-tracking"
                 type="text"
                 value={parcelTracking}
                 onChange={(e) => setParcelTracking(e.target.value)}
                 placeholder="Cth: SPXMY0489912"
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 font-mono focus:outline-none focus:border-amber-500/50"
+                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 font-mono focus:outline-none focus:border-amber-500/50"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Lokasi Rak / Locker</label>
+              <label htmlFor="parcel-shelf" className="block text-xs font-medium text-slate-700 dark:text-zinc-300 mb-1">Lokasi Rak / Locker</label>
               <input
+                id="parcel-shelf"
                 type="text"
                 value={parcelShelf}
                 onChange={(e) => setParcelShelf(e.target.value)}
                 placeholder="Cth: Locker B-3"
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
+                className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-white/[0.08] rounded-xl text-base sm:text-xs text-slate-900 dark:text-zinc-200 focus:outline-none focus:border-amber-500/50"
               />
             </div>
           </div>

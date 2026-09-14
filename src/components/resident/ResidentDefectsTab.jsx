@@ -46,11 +46,12 @@ export default function ResidentDefectsTab({ resident, defects, onReportDefect, 
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Kategori Masalah</label>
+            <label htmlFor="defect-category" className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Kategori Masalah</label>
             <select
+              id="defect-category"
               value={defectCategory}
               onChange={(e) => setDefectCategory(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-base sm:text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
             >
               <option value="LIFT">Lif Penumpang (SLA 24 Jam)</option>
               <option value="WATER_LEAK">Kebocoran Air / Paip Siling (Borang 28)</option>
@@ -62,35 +63,38 @@ export default function ResidentDefectsTab({ resident, defects, onReportDefect, 
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Lokasi Kerosakan</label>
+            <label htmlFor="defect-location" className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Lokasi Kerosakan</label>
             <input
+              id="defect-location"
               type="text"
               value={defectLocation}
               onChange={(e) => setDefectLocation(e.target.value)}
               placeholder="Cth: Lif 2 Tower A, Tingkat 14"
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-base sm:text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Ringkasan Aduan</label>
+            <label htmlFor="defect-title" className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Ringkasan Aduan</label>
             <input
+              id="defect-title"
               type="text"
               value={defectTitle}
               onChange={(e) => setDefectTitle(e.target.value)}
               placeholder="Cth: Pintu lif tersekat-sekat semasa menutup"
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-base sm:text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Perihal Terperinci</label>
+            <label htmlFor="defect-desc" className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Perihal Terperinci</label>
             <textarea
+              id="defect-desc"
               rows={3}
               value={defectDesc}
               onChange={(e) => setDefectDesc(e.target.value)}
               placeholder="Terangkan masalah dengan jelas untuk memudahkan juruteknik memeriksa..."
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500 resize-none"
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-base sm:text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500 resize-none"
             ></textarea>
           </div>
 

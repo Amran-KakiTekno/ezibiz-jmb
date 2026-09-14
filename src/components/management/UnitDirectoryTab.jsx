@@ -144,7 +144,7 @@ export default function UnitDirectoryTab({
                         </>
                       )}
                     </button>
-                    <span className="block text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">{unit.cardSerial}</span>
+                    <span className="block text-[11px] text-slate-400 dark:text-slate-500 font-mono mt-0.5">{unit.cardSerial}</span>
                   </td>
 
                   {/* Balance & Status */}
@@ -155,7 +155,7 @@ export default function UnitDirectoryTab({
                       RM {unit.balance.toFixed(2)}
                     </span>
                     {unit.daysOverdue > 0 && (
-                      <span className="block text-[10px] text-rose-600/80 dark:text-rose-400/80 font-medium">
+                      <span className="block text-[11px] text-rose-600/80 dark:text-rose-400/80 font-medium">
                         Lewat {unit.daysOverdue} Hari
                       </span>
                     )}

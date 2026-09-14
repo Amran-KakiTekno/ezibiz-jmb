@@ -83,7 +83,7 @@ export default function ManagementKpisTab({ building, units, defects }) {
               <h3 className="font-semibold text-slate-900 dark:text-white text-sm">Pecahan Akaun Statutori (Akta 757)</h3>
               <p className="text-xs text-slate-500 dark:text-zinc-400">Dua akaun bank berasingan yang diwajibkan undang-undang</p>
             </div>
-            <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/10 text-amber-700 dark:text-amber-300 font-mono border border-amber-500/20">
+            <span className="px-2 py-0.5 rounded-full text-[11px] bg-amber-500/10 text-amber-700 dark:text-amber-300 font-mono border border-amber-500/20">
               Seksyen 23 & 24
             </span>
           </div>

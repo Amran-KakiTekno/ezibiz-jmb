@@ -197,7 +197,7 @@ export default function ResidentPortal({
                 <div className="w-40 h-40 mx-auto border-2 border-rose-600 p-2 flex items-center justify-center rounded-lg bg-white">
                   <QrCode className="w-32 h-32 text-zinc-950" />
                 </div>
-                <p className="text-[10px] text-slate-600">{t('scanWithAnyBank')}</p>
+                <p className="text-[11px] text-slate-600">{t('scanWithAnyBank')}</p>
               </div>
             ) : (
               <div className="space-y-2">

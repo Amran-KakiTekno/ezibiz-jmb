@@ -93,7 +93,7 @@ export default function AgmNoticeTab({
             return (
               <div key={res.id} className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-xs">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                  <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
+                  <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider ${
                     res.type === 'SPECIAL_RESOLUTION'
                       ? 'bg-amber-500/15 border border-amber-500/30 text-amber-700 dark:text-amber-300'
                       : 'bg-indigo-500/15 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300'

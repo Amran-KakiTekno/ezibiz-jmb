@@ -188,7 +188,7 @@ export default function ReceiptModal({ isOpen, onClose, bill, resident, building
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800 print:border-slate-300 flex flex-col sm:flex-row justify-between items-end text-[11px] text-slate-500 dark:text-slate-400 print:text-slate-600 gap-4">
             <div>
               <p className="font-mono">Ref Transaksi: {transactionRef}</p>
-              <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">Resit dijana secara berkomputer melalui EziBiz JMB Suite. Tiada tandatangan fizikal diperlukan.</p>
+              <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Resit dijana secara berkomputer melalui EziBiz JMB Suite. Tiada tandatangan fizikal diperlukan.</p>
             </div>
             <div className="text-right">
               <div className="font-mono text-xs tracking-widest text-slate-700 dark:text-slate-300 print:text-slate-700 bg-slate-100 dark:bg-slate-950 print:bg-slate-200 px-3 py-1 rounded border border-slate-200 dark:border-slate-800 print:border-slate-300 inline-block">
