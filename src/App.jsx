@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Building2, 
@@ -41,8 +41,42 @@ export default function App() {
   const [showMoreDrawer, setShowMoreDrawer] = useState(false);
 
   // Master State
-  const [persona, setPersona] = useState('RESIDENT'); // RESIDENT | MANAGEMENT
-  const [activeTab, setActiveTab] = useState('bills');
+  const [persona, setPersona] = useState(() => (typeof window !== 'undefined' && window.location.hash.startsWith('#management') ? 'MANAGEMENT' : 'RESIDENT'));
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window === 'undefined') return 'bills';
+    const isMgmt = window.location.hash.startsWith('#management');
+    const m = window.location.hash.match(/^#(?:management|resident|residents)\/([\w-]+)/);
+    const valid = ['bills', 'defects', 'visitor', 'community', 'market', 'glassbox', 'kpis', 'units', 'agm', 'kanban', 'guardhouse'];
+    if (m && valid.includes(m[1])) {
+      return m[1] === 'market' ? 'community' : m[1] === 'kanban' ? 'defects' : m[1];
+    }
+    return isMgmt ? 'kpis' : 'bills';
+  });
+
+  useEffect(() => {
+    const personaSlug = persona === 'MANAGEMENT' ? 'management' : 'resident';
+    const hash = `#${personaSlug}/${activeTab}`;
+    if (window.location.hash !== hash) {
+      window.history.replaceState(null, '', hash);
+    }
+  }, [persona, activeTab]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const isMgmt = window.location.hash.startsWith('#management');
+      const newPersona = isMgmt ? 'MANAGEMENT' : 'RESIDENT';
+      const m = window.location.hash.match(/^#(?:management|resident|residents)\/([\w-]+)/);
+      const valid = ['bills', 'defects', 'visitor', 'community', 'market', 'glassbox', 'kpis', 'units', 'agm', 'kanban', 'guardhouse'];
+      const newTab = m && valid.includes(m[1]) 
+        ? (m[1] === 'market' ? 'community' : m[1] === 'kanban' ? 'defects' : m[1]) 
+        : (isMgmt ? 'kpis' : 'bills');
+      setPersona(newPersona);
+      setActiveTab(newTab);
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
   const [viewportMode, setViewportMode] = useState('responsive'); // responsive | mobile
   const [building, setBuilding] = useState(BUILDING_PROFILE);
   const [resident, setResident] = useState(CURRENT_RESIDENT);
