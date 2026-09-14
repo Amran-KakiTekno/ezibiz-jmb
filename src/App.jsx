@@ -652,9 +652,7 @@ export default function App() {
                       )}
                     </div>
                     <p className="text-xs text-slate-500 dark:text-zinc-400 truncate mt-0.5">
-                      {persona === 'RESIDENT'
-                        ? (language === 'ms' ? 'Penyata kewangan & audit terbuka JMB' : 'Act 757 verified transparent accounts & runway')
-                        : (language === 'ms' ? 'Pondok pengawal, log pelawat & bungkusan' : 'Security checkpoint & parcel intake logs')}
+                      {persona === 'RESIDENT' ? t('glassboxSub') : t('guardhouseSub')}
                     </p>
                   </div>
                 </button>
@@ -696,7 +694,7 @@ export default function App() {
                     {persona === 'RESIDENT' ? t('managementPersona') : t('residentPersona')}
                   </span>
                   <span className="text-[11px] text-slate-500 dark:text-zinc-400 block truncate">
-                    {language === 'ms' ? 'Tukar Portal' : 'Switch Role'}
+                    {t('switchRole')}
                   </span>
                 </div>
               </button>
@@ -743,7 +741,7 @@ export default function App() {
 
       {/* Toast Alert Banner */}
       {toast && (
-        <div className="fixed bottom-20 md:bottom-6 right-4 z-50 animate-in slide-in-from-bottom-3 duration-300">
+        <div role="status" aria-live="polite" className="fixed bottom-20 md:bottom-6 right-4 z-50 animate-in slide-in-from-bottom-3 duration-300">
           <div className={`px-4 py-3 rounded-xl shadow-lg text-xs font-medium flex items-center gap-2.5 border ${
             toast.type === 'success' 
               ? 'bg-white/95 dark:bg-zinc-950/95 text-emerald-700 dark:text-emerald-300 border-emerald-500/30'

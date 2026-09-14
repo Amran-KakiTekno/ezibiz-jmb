@@ -47,6 +47,9 @@ export const translations = {
     newPost: 'New Notice',
     more: 'More',
     moreModules: 'More Modules & Options',
+    glassboxSub: 'Act 757 verified transparent accounts & runway',
+    guardhouseSub: 'Security checkpoint & parcel intake logs',
+    switchRole: 'Switch Role',
 
     // Resident Portal Headers & Quick Pay
     greeting: 'Welcome, {name}',
@@ -138,6 +141,9 @@ export const translations = {
     newPost: 'Hebahan Baru',
     more: 'Lain-lain',
     moreModules: 'Modul & Pilihan Tambahan',
+    glassboxSub: 'Penyata kewangan & audit terbuka JMB',
+    guardhouseSub: 'Pondok pengawal, log pelawat & bungkusan',
+    switchRole: 'Tukar Portal',
 
     // Resident Portal Headers & Quick Pay
     greeting: 'Selamat Sejahtera, {name}',
