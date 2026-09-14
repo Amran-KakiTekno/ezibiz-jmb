@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ConfirmModal from '../ConfirmModal';
 import { 
   Search, 
   MessageSquare, 
@@ -19,6 +20,7 @@ export default function UnitDirectoryTab({
   const [searchQuery, setSearchQuery] = useState('');
   const [towerFilter, setTowerFilter] = useState('ALL');
   const [statusFilter, setStatusFilter] = useState('ALL'); // ALL | OVERDUE | PAID
+  const [suspendingUnit, setSuspendingUnit] = useState(null);
 
   const filteredUnits = units.filter(u => {
     const matchesSearch = 
@@ -116,7 +118,13 @@ export default function UnitDirectoryTab({
                   {/* RFID Card Status */}
                   <td className="py-3.5 px-4 whitespace-nowrap">
                     <button
-                      onClick={() => onToggleCardStatus(unit.id)}
+                      onClick={() => {
+                        if (unit.cardStatus === 'ACTIVE') {
+                          setSuspendingUnit(unit);
+                        } else {
+                          onToggleCardStatus(unit.id);
+                        }
+                      }}
                       className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-all min-h-[44px] cursor-pointer ${
                         unit.cardStatus === 'ACTIVE'
                           ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/20'
@@ -189,6 +197,22 @@ export default function UnitDirectoryTab({
           </table>
         </div>
       </div>
+
+      {/* RFID Card Suspension Confirmation Modal */}
+      <ConfirmModal
+        open={!!suspendingUnit}
+        title="Gantung Kad Akses RFID?"
+        body={`Adakah anda pasti untuk menggantung kad akses RFID bagi Unit ${suspendingUnit?.unitNo} (${suspendingUnit?.ownerName})? Kad access gate akan dinyahaktifkan.`}
+        confirmLabel="Gantung Kad"
+        danger={true}
+        onConfirm={() => {
+          if (suspendingUnit) {
+            onToggleCardStatus(suspendingUnit.id);
+            setSuspendingUnit(null);
+          }
+        }}
+        onCancel={() => setSuspendingUnit(null)}
+      />
     </div>
   );
 }

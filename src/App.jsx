@@ -23,6 +23,7 @@ import ManagementDesk from './components/ManagementDesk';
 import ReceiptModal from './components/ReceiptModal';
 import Form28Modal from './components/Form28Modal';
 import SettingsModal from './components/SettingsModal';
+import ManualPaymentModal from './components/ManualPaymentModal';
 import { useSettings } from './utils/useSettings';
 import { 
   BUILDING_PROFILE, 
@@ -90,6 +91,7 @@ export default function App() {
   // Modals & Toast State
   const [showReceiptModal, setShowReceiptModal] = useState(false);
   const [form28Ticket, setForm28Ticket] = useState(null);
+  const [manualPayTarget, setManualPayTarget] = useState(null);
   const [toast, setToast] = useState(null);
 
   const showToast = (message, type = 'info') => {
@@ -190,11 +192,27 @@ export default function App() {
   };
 
   // Action: Record manual payment (Management)
-  const handleRecordManualPayment = (unitId) => {
+  const handleOpenManualPayment = (unitId) => {
+    const target = units.find(u => u.id === unitId);
+    if (target) {
+      setManualPayTarget(target);
+    }
+  };
+
+  const handleConfirmManualPayment = (unitId, amount, ref) => {
     setUnits(prev => prev.map(u => {
       if (u.id === unitId) {
-        showToast(`Manual payment RM ${u.balance.toFixed(2)} for Unit ${u.unitNo} recorded.`, 'success');
-        return { ...u, balance: 0.00, status: 'PAID', daysOverdue: 0 };
+        const remaining = Math.max(0, u.balance - amount);
+        const nextStatus = remaining === 0 ? 'PAID' : 'OVERDUE';
+        const nextDays = remaining === 0 ? 0 : u.daysOverdue;
+        const refText = ref ? ` (Ruj: ${ref})` : '';
+        showToast(`Bayaran manual RM ${amount.toFixed(2)} untuk Unit ${u.unitNo}${refText} direkodkan. Baki: RM ${remaining.toFixed(2)}`, 'success');
+        return {
+          ...u,
+          balance: remaining,
+          status: nextStatus,
+          daysOverdue: nextDays
+        };
       }
       return u;
     }));
@@ -452,7 +470,7 @@ export default function App() {
                       resolutions={resolutions}
                       parcels={parcels}
                       onToggleCardStatus={handleToggleCardStatus}
-                      onRecordManualPayment={handleRecordManualPayment}
+                      onRecordManualPayment={handleOpenManualPayment}
                       onOpenForm28={setForm28Ticket}
                       onUpdateDefectStatus={handleUpdateDefectStatus}
                       onCastVote={handleCastVote}
@@ -498,7 +516,7 @@ export default function App() {
                 resolutions={resolutions}
                 parcels={parcels}
                 onToggleCardStatus={handleToggleCardStatus}
-                onRecordManualPayment={handleRecordManualPayment}
+                onRecordManualPayment={handleOpenManualPayment}
                 onOpenForm28={setForm28Ticket}
                 onUpdateDefectStatus={handleUpdateDefectStatus}
                 onCastVote={handleCastVote}
@@ -702,6 +720,14 @@ export default function App() {
         onClose={() => setForm28Ticket(null)}
         ticket={form28Ticket}
         building={building}
+      />
+
+      {/* Manual Payment Entry Modal */}
+      <ManualPaymentModal
+        isOpen={!!manualPayTarget}
+        onClose={() => setManualPayTarget(null)}
+        unit={manualPayTarget}
+        onConfirmPayment={handleConfirmManualPayment}
       />
 
       {/* Settings Modal */}

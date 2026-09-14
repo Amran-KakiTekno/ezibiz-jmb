@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ConfirmModal from '../ConfirmModal';
 import { Megaphone, Vote, CheckCircle2, Plus, AlertCircle } from 'lucide-react';
 
 export default function AgmNoticeTab({ 
@@ -9,6 +10,7 @@ export default function AgmNoticeTab({
 }) {
   const [noticeTitle, setNoticeTitle] = useState('');
   const [noticeContent, setNoticeContent] = useState('');
+  const [votingPending, setVotingPending] = useState(null);
 
   const handlePublish = (e) => {
     e.preventDefault();
@@ -137,18 +139,26 @@ export default function AgmNoticeTab({
                 {res.status === 'VOTING_ACTIVE' && (
                   <div className="flex items-center gap-2 pt-1">
                     <button
+                      type="button"
                       onClick={() => {
-                        onCastVote(res.id, 'FAVOR');
-                        showToast('Undian sokongan anda telah direkodkan ke dalam lejar undian!', 'success');
+                        setVotingPending({
+                          resId: res.id,
+                          voteType: 'FAVOR',
+                          resTitle: res.title
+                        });
                       }}
                       className="flex-1 py-2 px-3 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-semibold text-xs transition-colors min-h-[44px] cursor-pointer"
                     >
                       ✓ Sokong (Undi Ya)
                     </button>
                     <button
+                      type="button"
                       onClick={() => {
-                        onCastVote(res.id, 'AGAINST');
-                        showToast('Undian bantahan anda telah direkodkan!', 'info');
+                        setVotingPending({
+                          resId: res.id,
+                          voteType: 'AGAINST',
+                          resTitle: res.title
+                        });
                       }}
                       className="flex-1 py-2 px-3 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-700 dark:text-rose-300 font-semibold text-xs transition-colors min-h-[44px] cursor-pointer"
                     >
@@ -161,6 +171,27 @@ export default function AgmNoticeTab({
           })}
         </div>
       </div>
+
+      {/* E-Voting Confirmation Modal */}
+      <ConfirmModal
+        open={!!votingPending}
+        title={votingPending?.voteType === 'FAVOR' ? 'Sahkan Undian Menyokong' : 'Sahkan Undian Membantah'}
+        body={`Adakah anda pasti ingin mengundi ${votingPending?.voteType === 'FAVOR' ? 'MENYOKONG' : 'MEMBANTAH'} bagi "${votingPending?.resTitle}"? Undi tidak boleh dibatalkan.`}
+        confirmLabel={votingPending?.voteType === 'FAVOR' ? 'Undi Menyokong' : 'Undi Membantah'}
+        danger={votingPending?.voteType === 'AGAINST'}
+        onConfirm={() => {
+          if (votingPending) {
+            onCastVote(votingPending.resId, votingPending.voteType);
+            if (votingPending.voteType === 'FAVOR') {
+              showToast('Undian sokongan anda telah direkodkan ke dalam lejar undian!', 'success');
+            } else {
+              showToast('Undian bantahan anda telah direkodkan!', 'info');
+            }
+            setVotingPending(null);
+          }
+        }}
+        onCancel={() => setVotingPending(null)}
+      />
     </div>
   );
 }
